@@ -2,6 +2,7 @@ package com.example.vegrecipeseeker;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +35,12 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_search_land);
+        } else {
+            setContentView(R.layout.activity_search);
+        }
 
         // Initialize ViewModel
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
