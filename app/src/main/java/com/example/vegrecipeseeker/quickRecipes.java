@@ -1,6 +1,7 @@
 package com.example.vegrecipeseeker;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -23,7 +24,12 @@ public class quickRecipes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quick_recipes);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_quick_recipes_land);
+        } else {
+            setContentView(R.layout.activity_quick_recipes);
+        }
 
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
