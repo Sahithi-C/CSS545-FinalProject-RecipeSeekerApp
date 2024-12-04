@@ -116,12 +116,12 @@ public class homeScreen extends BaseActivity {
             Intent intent = new Intent(homeScreen.this, quickRecipes.class);
             startActivity(intent);
         });
-//
-//        Button spiceLevelButton = findViewById(R.id.spiceLevelButton);
-//        spiceLevelButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(homeScreen.this, spiceLevel.class);
-//            startActivity(intent);
-//        });
+
+        Button spiceLevelButton = findViewById(R.id.spiceLevelButton);
+        spiceLevelButton.setOnClickListener(v -> {
+            Intent intent = new Intent(homeScreen.this, spiceLevel.class);
+            startActivity(intent);
+        });
     }
 
     @Override
