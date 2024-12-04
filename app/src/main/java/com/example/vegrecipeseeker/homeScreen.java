@@ -124,20 +124,20 @@ public class homeScreen extends BaseActivity {
 //        });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
-//        MenuItem menuItem = menu.findItem(R.id.search);
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//        searchView.setQueryHint("Search here");
-//
-//        searchView.setOnSearchClickListener(view -> {
-//            Intent intent = new Intent(homeScreen.this, SearchActivity.class);
-//            startActivity(intent);
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search here");
+
+        searchView.setOnSearchClickListener(view -> {
+            Intent intent = new Intent(homeScreen.this, SearchActivity.class);
+            startActivity(intent);
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
 
     private void showAboutUsDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
