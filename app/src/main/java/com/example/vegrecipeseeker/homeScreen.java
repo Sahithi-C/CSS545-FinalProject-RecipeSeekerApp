@@ -105,11 +105,11 @@ public class homeScreen extends BaseActivity {
 //            startActivity(intent);
 //        });
 //
-//        Button favouritesButton = findViewById(R.id.favouritesButton);
-//        favouritesButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(homeScreen.this, Favourites.class);
-//            startActivity(intent);
-//        });
+        Button favouritesButton = findViewById(R.id.favouritesButton);
+        favouritesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(homeScreen.this, Favourites.class);
+            startActivity(intent);
+        });
 //
 //        Button quickRecipesButton = findViewById(R.id.quickRecipesButton);
 //        quickRecipesButton.setOnClickListener(v -> {
