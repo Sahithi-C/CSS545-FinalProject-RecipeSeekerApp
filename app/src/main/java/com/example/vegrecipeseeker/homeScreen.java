@@ -69,12 +69,12 @@ public class homeScreen extends BaseActivity {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
-//            else if (itemId == R.id.nav_settings) {
-//                Intent settingsIntent = new Intent(homeScreen.this, settings.class);
-//                startActivity(settingsIntent);
-//                drawerLayout.closeDrawer(GravityCompat.START);
-//                return true;
-//            }
+            else if (itemId == R.id.nav_settings) {
+                Intent settingsIntent = new Intent(homeScreen.this, settings.class);
+                startActivity(settingsIntent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
             else if (itemId == R.id.nav_about) {
                 showAboutUsDialog();
                 drawerLayout.closeDrawer(GravityCompat.START);
