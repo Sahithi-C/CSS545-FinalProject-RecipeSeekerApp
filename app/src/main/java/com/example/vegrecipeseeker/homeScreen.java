@@ -98,13 +98,13 @@ public class homeScreen extends BaseActivity {
             return false;
         });
 
-//        // Initialize buttons
-//        Button recipesListButton = findViewById(R.id.recipesListButton);
-//        recipesListButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(homeScreen.this, recipesList.class);
-//            startActivity(intent);
-//        });
-//
+        // Initialize buttons
+        Button recipesListButton = findViewById(R.id.recipesListButton);
+        recipesListButton.setOnClickListener(v -> {
+            Intent intent = new Intent(homeScreen.this, recipesList.class);
+            startActivity(intent);
+        });
+
         Button favouritesButton = findViewById(R.id.favouritesButton);
         favouritesButton.setOnClickListener(v -> {
             Intent intent = new Intent(homeScreen.this, Favourites.class);
