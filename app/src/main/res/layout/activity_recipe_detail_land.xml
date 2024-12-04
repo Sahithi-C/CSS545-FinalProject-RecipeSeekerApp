@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/recipeScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Back Button -->
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back_24"
+                    app:tint="@color/blue"
+                    android:contentDescription="Back"
+                    android:padding="8dp" />
+
+                <!-- Home Button -->
+                <ImageView
+                    android:id="@+id/homeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_home_24"
+                    app:tint="@color/blue"
+                    android:contentDescription="Home"
+                    android:padding="8dp" />
+            </LinearLayout>
+
+            <!-- Recipe image at the center top -->
+            <ImageView
+                android:id="@+id/recipeImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Recipe Image" />
+
+            <!-- Favorite Button (Heart Icon) -->
+            <ImageView
+                android:id="@+id/favoriteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="-40dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/baseline_favorite_24"
+                android:contentDescription="Favorite"
+                app:tint="@color/red" />
+
+            <!-- Recipe title -->
+            <TextView
+                android:id="@+id/recipeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Recipe Title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:layout_marginTop="16dp">-->
+
+            <!--                &lt;!&ndash; ImageView for Allergen Warning &ndash;&gt;-->
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/allergenWarningButton"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:src="@drawable/baseline_warning_24"-->
+            <!--                    app:tint="@color/yellow"-->
+            <!--                    android:contentDescription="Allergen Warnings"-->
+            <!--                    android:layout_marginEnd="8dp"/>-->
+
+            <!--                &lt;!&ndash; TextView for Allergen Warning Heading &ndash;&gt;-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/AllergenHeading"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="Allergen Warning!"-->
+            <!--                    android:textColor="@android:color/black"-->
+            <!--                    android:textSize="16sp"-->
+            <!--                    android:layout_marginTop="0dp"-->
+            <!--                    android:gravity="center_vertical" />-->
+            <!--            </LinearLayout>-->
+
+            <TextView
+                android:id="@+id/cookingTimeHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Cooking Time:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/cookingTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/spiceLevelHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Spice Level:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/spiceLevelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/black" />
+
+            <!-- Ingredients heading -->
+            <TextView
+                android:id="@+id/ingredientsHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Ingredients:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/blue" />
+
+            <!-- Ingredients list -->
+            <TextView
+                android:id="@+id/ingredientsList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/black" />
+
+            <!-- Instructions heading -->
+            <TextView
+                android:id="@+id/instructionsHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Instructions:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/blue" />
+
+            <!-- Instructions list -->
+            <TextView
+                android:id="@+id/instructionsList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Scroll control buttons container -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp">
+
+        <!-- Up scroll button -->
+        <ImageButton
+            android:id="@+id/scrollUpButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle_button_background"
+            android:src="@drawable/baseline_arrow_upward_24"
+            android:contentDescription="Scroll Up"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Down scroll button -->
+        <ImageButton
+            android:id="@+id/scrollDownButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle_button_background"
+            android:src="@drawable/baseline_arrow_downward_24"
+            android:contentDescription="Scroll Down"/>
+    </LinearLayout>
+</FrameLayout>

@@ -3,6 +3,7 @@ package com.example.vegrecipeseeker;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -65,7 +66,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_detail);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_recipe_detail_land);
+        } else {
+            setContentView(R.layout.activity_recipe_detail);
+        }
 
 //        allergenWarningButton = findViewById(R.id.allergenWarningButton);
 //
