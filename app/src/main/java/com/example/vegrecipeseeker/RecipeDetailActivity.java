@@ -73,39 +73,39 @@ public class RecipeDetailActivity extends AppCompatActivity {
             setContentView(R.layout.activity_recipe_detail);
         }
 
-//        allergenWarningButton = findViewById(R.id.allergenWarningButton);
-//
-//        // Check if the user has already seen the allergen instruction message
-//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//        boolean hasSeenAllergenMessage = prefs.getBoolean(PREFS_KEY, false);
-//
-//        if (!hasSeenAllergenMessage) {
-//            // Show toast message explaining the allergen icon functionality
-//            Toast.makeText(this, "Click on the allergen icon for warnings", Toast.LENGTH_LONG).show();
-//
-//            // Save that the user has seen the message to prevent showing it again
-//            prefs.edit().putBoolean(PREFS_KEY, true).apply();
-//        }
-//
-//        // 1. Tooltip for the allergen icon
-//        ViewCompat.setTooltipText(allergenWarningButton, "Click for allergen warnings");
-//
-//        allergenWarningButton.setOnLongClickListener(v -> {
-//            // Show tooltip on long press
-//            return true; // Return true to consume the event
-//        });
-//
-//        // 2. Pulse animation to draw attention to the allergen icon
-//        ObjectAnimator pulseAnimator = ObjectAnimator.ofFloat(allergenWarningButton, "alpha", 1f, 0.5f, 1f);
-//        pulseAnimator.setDuration(1000); // Duration for one pulse cycle
-//        pulseAnimator.setRepeatCount(ObjectAnimator.INFINITE); // Repeat infinitely
-//        pulseAnimator.start();
-//
-//        // 3. Highlight the icon by changing its background color temporarily
-//        allergenWarningButton.setBackgroundColor(getResources().getColor(R.color.colorAccent)); // Temporary highlight color
-//
-//        // After 2 seconds, reset background color to transparent
-//        new Handler().postDelayed(() -> allergenWarningButton.setBackgroundColor(getResources().getColor(R.color.transparent)), 2000);
+        allergenWarningButton = findViewById(R.id.allergenWarningButton);
+
+        // Check if the user has already seen the allergen instruction message
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean hasSeenAllergenMessage = prefs.getBoolean(PREFS_KEY, false);
+
+        if (!hasSeenAllergenMessage) {
+            // Show toast message explaining the allergen icon functionality
+            Toast.makeText(this, "Click on the allergen icon for warnings", Toast.LENGTH_LONG).show();
+
+            // Save that the user has seen the message to prevent showing it again
+            prefs.edit().putBoolean(PREFS_KEY, true).apply();
+        }
+
+        // 1. Tooltip for the allergen icon
+        ViewCompat.setTooltipText(allergenWarningButton, "Click for allergen warnings");
+
+        allergenWarningButton.setOnLongClickListener(v -> {
+            // Show tooltip on long press
+            return true; // Return true to consume the event
+        });
+
+        // 2. Pulse animation to draw attention to the allergen icon
+        ObjectAnimator pulseAnimator = ObjectAnimator.ofFloat(allergenWarningButton, "alpha", 1f, 0.5f, 1f);
+        pulseAnimator.setDuration(1000); // Duration for one pulse cycle
+        pulseAnimator.setRepeatCount(ObjectAnimator.INFINITE); // Repeat infinitely
+        pulseAnimator.start();
+
+        // 3. Highlight the icon by changing its background color temporarily
+        allergenWarningButton.setBackgroundColor(getResources().getColor(R.color.colorAccent)); // Temporary highlight color
+
+        // After 2 seconds, reset background color to transparent
+        new Handler().postDelayed(() -> allergenWarningButton.setBackgroundColor(getResources().getColor(R.color.transparent)), 2000);
 
         // Initialize ViewModel
         recipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
@@ -213,6 +213,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 if (recipe != null) {
                     currentRecipe = recipe;
                     displayRecipe();
+                    displayAllergenWarningsButton();
 
                     // Restore scroll position after layout is complete
                     if (!isScrollRestored) {
@@ -303,200 +304,139 @@ public class RecipeDetailActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Allergen Warnings");
 
-        // Fetch allergens for this recipe
-//        recipeViewModel.getAllergensByRecipeId(currentRecipe.recipe.id).observe(this, allergens -> {
-//            // Prepare the dialog message
-//            String allergenMessage;
-//
-//            // Predefined allergen warnings for specific recipes
-//            switch (currentRecipe.recipe.title) {
-//                case "Biryani":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains dairy (yogurt, paneer).\n" +
-//                            "• Contains gluten (from the biryani masala, and possibly the rice, depending on the type used).\n" +
-//                            "• Contains soy (in some biryani masalas).\n" +
-//                            "• Contains nuts (coriander and fried onions might be processed with nuts in some cases).";
-//                    break;
-//
-//                case "Paneer Butter Masala":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains dairy (butter, cream, paneer).\n" +
-//                            "• Contains nuts (cashews).\n" +
-//                            "• Contains soy (in some soy sauces).\n" +
-//                            "• May contain traces of gluten (soy sauce, depending on the brand used).";
-//                    break;
-//
-//                case "Peanut Chutney":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains peanuts.\n" +
-//                            "• Contains tree nuts (cashews, if used in preparation or other variations).\n" +
-//                            "• Contains sesame seeds if used in the tempering.\n" +
-//                            "• May contain gluten (if served with bread or certain types of dosa).";
-//                    break;
-//
-//                case "Okra Fry Curry":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• May contain traces of nuts (if peanuts are roasted or used in tempering).\n" +
-//                            "• May contain gluten (if served with bread or other gluten-containing products).\n" +
-//                            "• Contains legumes (chana dal, urad dal) which could trigger allergies in some individuals.";
-//                    break;
-//
-//                case "Veg Hakka Noodles":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains gluten (noodles, soy sauce).\n" +
-//                            "• Contains soy (soy sauce).\n" +
-//                            "• Contains sesame seeds (depending on soy sauce brand).";
-//                    break;
-//
-//                case "Upma":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains gluten (semolina).\n" +
-//                            "• Contains tree nuts (peanuts).\n" +
-//                            "• May contain legumes (urad dal, chana dal).";
-//                    break;
-//
-//                case "Veg Momos":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains gluten (maida/flour).\n" +
-//                            "• Contains soy (soy sauce, if used in the stuffing or dipping sauce).\n" +
-//                            "• Contains nuts (if using sesame seeds or peanut oil for frying).";
-//                    break;
-//
-//                case "Momos Chutney":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains tree nuts (almonds).\n" +
-//                            "• Contains soy (soy sauce).\n" +
-//                            "• Contains sesame seeds (if used in certain soy sauces).";
-//                    break;
-//
-//                case "Cream of Spinach Soup":
-//                    allergenMessage = "Allergen Warning:\n" +
-//                            "• Contains dairy (cream, milk, butter).\n" +
-//                            "• May contain gluten (if using any flour-based thickening agents).";
-//                    break;
-//
-//                default:
-//                    if (allergens == null || allergens.isEmpty()) {
-//                        allergenMessage = "No specific allergen warnings for this recipe.\n" +
-//                                "As always, check ingredient labels and be aware of potential cross-contamination.";
-//                    } else {
-//                        // Existing code to generate allergen message from database
-//                        StringBuilder messageBuilder = new StringBuilder();
-//                        int commonAllergenCount = 0;
-//                        int recipeSpecificAllergenCount = 0;
-//
-//                        for (Allergen allergen : allergens) {
-//                            if (allergen.isCommonAllergen) {
-//                                commonAllergenCount++;
-//                            } else {
-//                                recipeSpecificAllergenCount++;
-//                            }
-//
-//                            messageBuilder.append("- ")
-//                                    .append(allergen.name)
-//                                    .append(": ")
-//                                    .append(allergen.description)
-//                                    .append("\n");
-//                        }
-//
-//                        messageBuilder.insert(0, String.format(
-//                                "This recipe contains:\n" +
-//                                        "• %d common food allergen%s\n" +
-//                                        "• %d recipe-specific allergen%s\n\n",
-//                                commonAllergenCount,
-//                                commonAllergenCount != 1 ? "s" : "",
-//                                recipeSpecificAllergenCount,
-//                                recipeSpecificAllergenCount != 1 ? "s" : ""
-//                        ));
-//
-//                        allergenMessage = messageBuilder.toString().trim();
-//                    }
-//                    break;
-//            }
-//
-//            // Add the disclaimer message
-//            allergenMessage += "\n\nDisclaimer: The allergen information provided is based on our current knowledge. We recommend that you check the ingredients before consumption. We do not take responsibility for any allergic reactions.";
-//
-//            // Create SpannableString to style the dialog text
-//            SpannableString spannableMessage = new SpannableString(allergenMessage);
-//
-//            // Set the color for the headings (red)
-//            int headingStart = allergenMessage.indexOf("Allergen Warning:");
-//            int headingEnd = headingStart + "Allergen Warning:".length();
-//            spannableMessage.setSpan(new ForegroundColorSpan(Color.RED), headingStart, headingEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//
-//            // Set the color for the remaining text (blue)
-//            spannableMessage.setSpan(new ForegroundColorSpan(Color.BLUE), 0, allergenMessage.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//
-//            // Set the message and show the dialog
-//            builder.setMessage(spannableMessage)
-//                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-//                    .setIcon(R.drawable.baseline_warning_24);
-//
-//            // Change icon color to yellow
-//            Drawable icon = getResources().getDrawable(R.drawable.baseline_warning_24);
-//            icon.setColorFilter(new PorterDuffColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_IN));
-//
-//            // Set the modified icon
-//            builder.setIcon(icon);
-//
-//            // Create and show the dialog on the main thread
-//            runOnUiThread(() -> {
-//                try {
-//                    AlertDialog dialog = builder.create();
-//                    dialog.show();
-//
-//                    // Show toast explaining allergen icon functionality, only once
-//                    SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//                    boolean hasSeenAllergenMessage = prefs.getBoolean(PREFS_KEY, false);
-//
-//                    if (!hasSeenAllergenMessage) {
-//                        // Show toast message explaining the allergen icon functionality
-//                        Toast.makeText(this, "Click on the allergen icon for warnings", Toast.LENGTH_LONG).show();
-//
-//                        // Save that the user has seen the message to prevent showing it again
-//                        prefs.edit().putBoolean(PREFS_KEY, true).apply();
-//                    }
-//
-//                    // 1. Tooltip for the allergen icon
-//                    ViewCompat.setTooltipText(allergenWarningButton, "Click for allergen warnings");
-//
-//                    allergenWarningButton.setOnLongClickListener(v -> {
-//                        // Show tooltip on long press
-//                        return true; // Return true to consume the event
-//                    });
-//
-//                    // 2. Pulse animation to draw attention to the allergen icon
-//                    ObjectAnimator pulseAnimator = ObjectAnimator.ofFloat(allergenWarningButton, "alpha", 1f, 0.5f, 1f);
-//                    pulseAnimator.setDuration(1000); // Duration for one pulse cycle
-//                    pulseAnimator.setRepeatCount(ObjectAnimator.INFINITE); // Repeat infinitely
-//                    pulseAnimator.start();
-//
-//                    // 3. Highlight the icon by changing its background color temporarily
-//                    allergenWarningButton.setBackgroundColor(getResources().getColor(R.color.colorAccent)); // Temporary highlight color
-//
-//                    // After 2 seconds, reset background color to transparent
-//                    new Handler().postDelayed(() -> allergenWarningButton.setBackgroundColor(getResources().getColor(R.color.transparent)), 2000);
-//
-//                    // Animate color change of the Toast background (yellow to red)
-//                    Toast toast = Toast.makeText(this, "Allergen Information", Toast.LENGTH_LONG);
-//                    View toastView = toast.getView();
-//                    toastView.setBackgroundColor(Color.BLACK); // Initial background color
-//                    toast.show();
-//
-//                    // Apply ObjectAnimator to animate the background color change from Yellow to Red
-//                    ObjectAnimator colorChangeAnimator = ObjectAnimator.ofArgb(
-//                            toastView, "backgroundColor", Color.YELLOW, Color.RED); // Color transition
-//                    colorChangeAnimator.setDuration(500); // Animation duration (500ms)
-//                    colorChangeAnimator.start();
-//
-//                } catch (Exception e) {
-//                    Log.e("AllergenDialog", "Error showing allergen dialog", e);
-//                    Toast.makeText(this, "Unable to display allergen information", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        });
-//
+        // Prepare the dialog message
+        String allergenMessage;
+
+        // Allergen warnings for specific recipes
+        switch (currentRecipe.recipe.title) {
+            case "Biryani":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains dairy (yogurt, paneer).\n" +
+                        "• Contains gluten (from the biryani masala, and possibly the rice, depending on the type used).\n" +
+                        "• Contains soy (in some biryani masalas).\n" +
+                        "• Contains nuts (coriander and fried onions might be processed with nuts in some cases).";
+                break;
+
+            case "Paneer Butter Masala":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains dairy (butter, cream, paneer).\n" +
+                        "• Contains nuts (cashews).\n" +
+                        "• Contains soy (in some soy sauces).\n" +
+                        "• May contain traces of gluten (soy sauce, depending on the brand used).";
+                break;
+
+            case "Peanut Chutney":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains peanuts.\n" +
+                        "• Contains tree nuts (cashews, if used in preparation or other variations).\n" +
+                        "• Contains sesame seeds if used in the tempering.\n" +
+                        "• May contain gluten (if served with bread or certain types of dosa).";
+                break;
+
+            case "Okra Fry Curry":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• May contain traces of nuts (if peanuts are roasted or used in tempering).\n" +
+                        "• May contain gluten (if served with bread or other gluten-containing products).\n" +
+                        "• Contains legumes (chana dal, urad dal) which could trigger allergies in some individuals.";
+                break;
+
+            case "Veg Hakka Noodles":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains gluten (noodles, soy sauce).\n" +
+                        "• Contains soy (soy sauce).\n" +
+                        "• Contains sesame seeds (depending on soy sauce brand).";
+                break;
+
+            case "Upma":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains gluten (semolina).\n" +
+                        "• Contains tree nuts (peanuts).\n" +
+                        "• May contain legumes (urad dal, chana dal).";
+                break;
+
+            case "Veg Momos":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains gluten (maida/flour).\n" +
+                        "• Contains soy (soy sauce, if used in the stuffing or dipping sauce).\n" +
+                        "• Contains nuts (if using sesame seeds or peanut oil for frying).";
+                break;
+
+            case "Momos Chutney":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains tree nuts (almonds).\n" +
+                        "• Contains soy (soy sauce).\n" +
+                        "• Contains sesame seeds (if used in certain soy sauces).";
+                break;
+
+            case "Spinach Soup":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains dairy (cream, milk, butter).\n" +
+                        "• May contain gluten (if using any flour-based thickening agents).";
+                break;
+
+            case "Corn Rice":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• May contain gluten (depending on the seasoning or spices used).\n" +
+                        "• Contains corn, which could trigger allergies in sensitive individuals.";
+                break;
+
+            case "Fried Rice":
+                allergenMessage = "Allergen Warning:\n" +
+                        "• Contains gluten (soy sauce, depending on the brand used).\n" +
+                        "• Contains soy (soy sauce, tofu, or other soy-based ingredients).\n" +
+                        "• May contain sesame (if sesame oil or seeds are used).";
+                break;
+
+            default:
+                allergenMessage = "Allergen Warning:\n" +
+                        "No specific allergen warnings for this recipe.\n" +
+                        "As always, check ingredient labels and be aware of potential cross-contamination.";
+                break;
+        }
+
+        // Add the disclaimer message
+        allergenMessage += "\n\nDisclaimer: The allergen information provided is based on our current knowledge. We recommend that you check the ingredients before consumption. We do not take responsibility for any allergic reactions.";
+
+        // Create SpannableString to style the dialog text
+        SpannableString spannableMessage = new SpannableString(allergenMessage);
+
+        int headingStart = allergenMessage.indexOf("Allergen Warning:");
+        int headingEnd = headingStart + "Allergen Warning:".length();
+
+        // First, set the entire text to black
+        spannableMessage.setSpan(new ForegroundColorSpan(Color.BLACK), 0, allergenMessage.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Using a predefined dark yellow color
+        spannableMessage.setSpan(new ForegroundColorSpan(Color.rgb(204, 153, 0)), headingStart, headingEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Then apply red to the disclaimer
+        int disclaimerStart = allergenMessage.indexOf("Disclaimer:");
+        int disclaimerEnd = allergenMessage.length();
+        spannableMessage.setSpan(new ForegroundColorSpan(Color.RED), disclaimerStart, disclaimerEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Set the message and show the dialog
+        builder.setMessage(spannableMessage)
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .setIcon(R.drawable.baseline_warning_24);
+
+        // Change icon color to yellow
+        Drawable icon = getResources().getDrawable(R.drawable.baseline_warning_24);
+        icon.setColorFilter(new PorterDuffColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_IN));
+
+        // Set the modified icon
+        builder.setIcon(icon);
+
+        // Create and show the dialog on the main thread
+        runOnUiThread(() -> {
+            try {
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } catch (Exception e) {
+                Log.e("AllergenDialog", "Error showing allergen dialog", e);
+                Toast.makeText(this, "Unable to display allergen information", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
@@ -538,6 +478,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
         // Add a new button for allergen warnings
 //        ImageView allergenWarningButton = findViewById(R.id.allergenWarningButton);
 //        allergenWarningButton.setOnClickListener(v -> showAllergenWarningDialog());
+    }
+
+    private void displayAllergenWarningsButton() {
+        ImageView allergenWarningButton = findViewById(R.id.allergenWarningButton);
+        allergenWarningButton.setOnClickListener(v -> showAllergenWarningDialog());
     }
 
     private void displayIngredients(TextView ingredientsList) {

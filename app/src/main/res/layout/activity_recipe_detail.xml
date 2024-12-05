@@ -76,34 +76,34 @@
                 android:textStyle="bold"
                 android:textColor="@color/black" />
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:layout_marginTop="16dp">-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
 
-<!--                &lt;!&ndash; ImageView for Allergen Warning &ndash;&gt;-->
-<!--                <ImageView-->
-<!--                    android:id="@+id/allergenWarningButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/baseline_warning_24"-->
-<!--                    app:tint="@color/yellow"-->
-<!--                    android:contentDescription="Allergen Warnings"-->
-<!--                    android:layout_marginEnd="8dp"/>-->
+                <!-- ImageView for Allergen Warning -->
+                <ImageView
+                    android:id="@+id/allergenWarningButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_warning_24"
+                    app:tint="@color/yellow"
+                    android:contentDescription="Allergen Warnings"
+                    android:layout_marginEnd="8dp"/>
 
-<!--                &lt;!&ndash; TextView for Allergen Warning Heading &ndash;&gt;-->
-<!--                <TextView-->
-<!--                    android:id="@+id/AllergenHeading"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Allergen Warning!"-->
-<!--                    android:textColor="@android:color/black"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:layout_marginTop="0dp"-->
-<!--                    android:gravity="center_vertical" />-->
-<!--            </LinearLayout>-->
+                <!-- TextView for Allergen Warning Heading -->
+                <TextView
+                    android:id="@+id/AllergenHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Allergen Warning!"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/cookingTimeHeading"
