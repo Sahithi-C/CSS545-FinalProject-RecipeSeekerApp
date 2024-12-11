@@ -4,9 +4,13 @@
 
 The Vegetarian Recipe Seeker App is designed for convenience, allowing users to quickly find recipes without the hassle of long video browsing. With 86 million consumers spending an average of 25 minutes on food websites, the app offers a faster alternative by displaying recipes quickly. 
 
-## NOTE: Main branch is `Master-V2`
+## NOTE: 
 
-## NOTE: RoomAPI is used here for dynamic fetching of recipes data. Though this simplified Database operations, it exhibits slower performance during the initial app installation - requiring 5-10 seconds to load all Recipes for the first time.  
+Main branch is `Master-V2`
+
+## NOTE: 
+
+RoomAPI is used here for dynamic fetching of recipes data. Though this simplified Database operations, it exhibits slower performance during the initial app installation - requiring 5-10 seconds to load all Recipes for the first time.  
 
 ## Project Overview
 
