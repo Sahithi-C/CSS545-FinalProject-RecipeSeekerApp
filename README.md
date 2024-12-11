@@ -4,11 +4,6 @@
 
 The Vegetarian Recipe Seeker App is designed for convenience, allowing users to quickly find recipes without the hassle of long video browsing. With 86 million consumers spending an average of 25 minutes on food websites, the app offers a faster alternative by displaying recipes quickly. 
 
-Key features include:
-- Prioritizing user safety by showing allergens and warnings before viewing recipes
-- Enabling users to store favorite recipes for easier meal planning
-- Catering to the 44% of Americans who regularly meal prep
-
 ## Team Members
 
 **Sahithi C**
